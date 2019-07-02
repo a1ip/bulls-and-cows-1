@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bulls and Cows</title>
+
+    <!-- Bootstrap CSS -->
+    <!--<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Bulls and Cows</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Play
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#howToPlayModal">How to play?</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#configModal">Configuration</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+            <h1 class="mt-5">Welcome</h1>
+            <p class="lead">Let's play!!!</p>
+			<div id="game">
+				<form>
+				<div class="row justify-content-center">
+					<div class="col-4">
+						<label>Numbers</label>
+					</div>
+					<div class="col-2">
+						<label>Bulls</label>
+					</div>
+					<div class="col-2">
+						<label>Cows</label>
+					</div>
+				</div>
+				
+                <div class="row">
+                    <div class="col-12" id="divNumbers">
+
+                        <div id="div1" class="row justify-content-center">
+                            <div class="col-1">
+                                <input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num1">
+                            </div>
+                            <div class="col-1">
+                                <input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num2">
+                            </div>
+                            <div class="col-1">
+                                <input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num3">
+                            </div>
+                            <div class="col-1">
+                                <input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num4">
+                            </div>
+
+                            <div class="col-2">
+                                <div class="row justify-content-center">
+                                    <div class="col-6">
+                                        <input type="text" name="bulls" class="form-control" disabled></input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="row justify-content-center">
+                                    <div class="col-6">
+                                        <input type="text" name="cows" class="form-control" disabled></input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+				<br />
+				<div class="row justify-content-center">
+					<div class="col-3"><!-- onclick="checkBtn(this.form)" -->
+						<button class="btn btn-primary" type="submit" id="checkbtn" data-count="1" data-first="true">Check</button>
+					</div>
+					<div class="col-3">
+						<button class="btn btn-danger" type="submit" id="resetbtn">Reset</button>				
+					</div>
+				</div>
+
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Repeated numbers -->
+      <div id="numRepModal" class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Icono de warning</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p>Numbers can not be repeated</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      <!-- YOU WIN Congratulations -->
+      <div id="youWinModal" class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Icono de WIN</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p>Congratulations!!! You win!!!</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button id="youWinBtn" type="submit" class="btn btn-success" data-dismiss="modal">Try again</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- YOU LOST Reached max row count -->
+      <div id="maxRowCountModal" class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Icono de LOST</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p>Game over. Sorry, you reached the max amount of rows. Try again!</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button id="youLostBtn" type="submit" class="btn btn-primary" data-dismiss="modal">Try again</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Configuration modal -->
+    <div id="configModal" class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Configuration</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <form>
+                          <div class="form-group row">
+                            <label for="inputMaxRow" class="col-8 col-form-label">Max row count</label>
+                            <input id="inputMaxRow" type="number" class="col-3 form-control noneKeyPress" min="1" max="15" value="8">
+                          </div>
+                      </form>
+                  </div>
+                  <div class="modal-footer">
+                      <form>
+                          <button id="configBtn" type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      </form>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      <!-- How To Play modal -->
+    <div id="howToPlayModal" class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">How to play?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p>
+                          You have to write a 4-digit number and try to match a secret number. 
+                          The digits (0-9) must be all different. When the “Check” button is clicked,
+                          will be revealed the number of matches with the secret number. 
+                          If the matching digits are in their right positions, they are "bulls", 
+                          if in different positions, they are "cows". Example: 
+                          <ul>
+                              <li>
+                                  Secret number: <h4>4271</h4>
+                              </li>
+                              <li>
+                                  Your number: <h4>1234</h4>
+                              </li>
+                          </ul>
+                          <ul>
+                              Answer: 1 bull and 2 cows.
+                              <li>
+                                  The bull is "2" (is in the correct position)
+                              </li>
+                              <li>
+                                  The cows are "4" and "1" (are in different positions)
+                              </li>
+                          </ul>
+                      </p>
+                  </div>
+                  <div class="modal-footer">
+                      <form>
+                          <button id="Button1" type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                      </form>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      <!-- Bootstrap core JavaScript -->
+    <!--<script src="js/jquery/jquery.min.js"></script>
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+    <!-- MyScripts-->
+    <script src="js/myscripts.js"></script>
+
+  </body>
+
+</html>
