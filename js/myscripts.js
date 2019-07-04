@@ -91,15 +91,15 @@ $(document).ready(function () {
     //---------------------Ckeck button-----------------------------------------
     $("#checkbtn").click(function (e) {
         e.preventDefault();
-        var n1 = $('#div' + countDiv + " :input[name=num1]").val();
-        var n2 = $('#div' + countDiv + " :input[name=num2]").val();
-        var n3 = $('#div' + countDiv + " :input[name=num3]").val();
-        var n4 = $('#div' + countDiv + " :input[name=num4]").val();
+        var n1 = $('#mydiv' + countDiv + " :input[name=num1]").val();
+        var n2 = $('#mydiv' + countDiv + " :input[name=num2]").val();
+        var n3 = $('#mydiv' + countDiv + " :input[name=num3]").val();
+        var n4 = $('#mydiv' + countDiv + " :input[name=num4]").val();
         var array = [n1, n2, n3, n4];
 
         result = check(array);
-        $('#div' + countDiv + " :input[name=bulls]").val(result[0]);
-        $('#div' + countDiv + " :input[name=cows]").val(result[1]);
+        $('#mydiv' + countDiv + " :input[name=bulls]").val(result[0]);
+        $('#mydiv' + countDiv + " :input[name=cows]").val(result[1]);
 
         if (result[0] == 4) {//4 bulls -> you win
             disableLastRow();
@@ -118,10 +118,10 @@ $(document).ready(function () {
 
     //----------------Disable last row----------------
     function disableLastRow() {
-        $('#div' + countDiv + " :input[name=num1]").attr("disabled", "disabled");
-        $('#div' + countDiv + " :input[name=num2]").attr("disabled", "disabled");
-        $('#div' + countDiv + " :input[name=num3]").attr("disabled", "disabled");
-        $('#div' + countDiv + " :input[name=num4]").attr("disabled", "disabled");
+        $('#mydiv' + countDiv + " :input[name=num1]").attr("disabled", "disabled");
+        $('#mydiv' + countDiv + " :input[name=num2]").attr("disabled", "disabled");
+        $('#mydiv' + countDiv + " :input[name=num3]").attr("disabled", "disabled");
+        $('#mydiv' + countDiv + " :input[name=num4]").attr("disabled", "disabled");
     }
 
     //----------------Create New row----------------
@@ -130,16 +130,16 @@ $(document).ready(function () {
         countDiv++;
 
         //Create new inputs
-        var num1 = $('<div class="col-1"><input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num1"></div>');
-        var num2 = $('<div class="col-1"><input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num2"></div>');
-        var num3 = $('<div class="col-1"><input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num3"></div>');
-        var num4 = $('<div class="col-1"><input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num4"></div>');
-        var bullsResult = $('<div class="col-2"><div class="row justify-content-center"><div class="col-6"><input type="text" name="bulls" class="form-control" disabled></input></div></div></div>')
-        var cowsResult = $('<div class="col-2"><div class="row justify-content-center"><div class="col-6"><input type="text" name="cows" class="form-control" disabled></input></div></div></div>')
+        var num1 = $('<div class="col-2"><input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num1"></div>');
+        var num2 = $('<div class="col-2"><input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num2"></div>');
+        var num3 = $('<div class="col-2"><input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num3"></div>');
+        var num4 = $('<div class="col-2"><input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num4"></div>');
+        var bullsResult = $('<div class="col-2"><input type="text" name="bulls" class="form-control" disabled></div></div></div>')
+        var cowsResult = $('<div class="col-2"><input type="text" name="cows" class="form-control" disabled></div></div></div>')
         
         //add rows to divNumbers
-        $('#divNumbers').append('<div id="div' + countDiv + '" class="row justify-content-center"></div>');
-        var $mydiv = $('#div' + countDiv);
+        $('#myNumbers').append('<div id="mydiv' + countDiv + '" class="form-row"></div>');
+        var $mydiv = $('#mydiv' + countDiv);
         num1.appendTo($mydiv);
         num2.appendTo($mydiv);
         num3.appendTo($mydiv);
@@ -150,7 +150,7 @@ $(document).ready(function () {
 
     //---------------Delete All Rows-----------------
     function deleteRows() {
-        $('#divNumbers div').empty(); //Clears content of divs inside divNumbers leaving this one intact
+        $('#myNumbers div').empty(); //Clears content of divs inside divNumbers leaving this one intact
         count = 0;
         countDiv = 0;
     }
