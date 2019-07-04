@@ -4,15 +4,16 @@
   <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1<!--, shrink-to-fit=no-->">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <title>Bulls and Cows</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
+    <link href="css/styles.css" rel="stylesheet">
   </head>
 
   <body>
@@ -49,66 +50,56 @@
             <h1 class="mt-5">Welcome</h1>
             <p class="lead">Let's play!!!</p>
 			<div id="game">
-				<form>
-				<div class="row justify-content-center">
-					<div class="col-4">
-						<label>Numbers</label>
-					</div>
-					<div class="col-2">
-						<label>Bulls</label>
-					</div>
-					<div class="col-2">
-						<label>Cows</label>
-					</div>
-				</div>
-				
-                <div class="row">
-                    <div class="col-12" id="divNumbers">
 
-                        <div id="div1" class="row justify-content-center">
-                            <div class="col-1">
-                                <input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num1">
-                            </div>
-                            <div class="col-1">
-                                <input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num2">
-                            </div>
-                            <div class="col-1">
-                                <input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num3">
-                            </div>
-                            <div class="col-1">
-                                <input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num4">
-                            </div>
-
-                            <div class="col-2">
-                                <div class="row justify-content-center">
-                                    <div class="col-6">
-                                        <input type="text" name="bulls" class="form-control" disabled></input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="row justify-content-center">
-                                    <div class="col-6">
-                                        <input type="text" name="cows" class="form-control" disabled></input>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            <label>Numbers</label>
                         </div>
-
+                        <div class="col-2">
+                            <label>Bulls</label>
+                        </div>
+                        <div class="col-2">
+                            <label>Cows</label>
+                        </div>
                     </div>
                 </div>
 
-				<br />
-				<div class="row justify-content-center">
-					<div class="col-3"><!-- onclick="checkBtn(this.form)" -->
-						<button class="btn btn-primary" type="submit" id="checkbtn" data-count="1" data-first="true">Check</button>
-					</div>
-					<div class="col-3">
-						<button class="btn btn-danger" type="submit" id="resetbtn">Reset</button>				
-					</div>
-				</div>
+                <form>
+                    <div id="myNumbers">
+                        <div id="mydiv1" class="form-row">
+                            <div class="col-2">
+                                <input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num1">
+                            </div>
+                            <div class="col-2">
+                                <input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num2">
+                            </div>
+                            <div class="col-2">
+                                <input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num3">
+                            </div>
+                            <div class="col-2">
+                                <input type="text" class="form-control onlyNumbers" pattern="[0-9]{1}" maxlength="1" name="num4">
+                            </div>
+                            <div class="col-2">
+                                <input type="text" name="bulls" class="form-control" disabled>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" name="bulls" class="form-control" disabled>
+                            </div>
+                        </div>
+                    </div>
 
+                    <br />
+                    <div class="row justify-content-center">
+                        <div class="col-3"><!-- onclick="checkBtn(this.form)" -->
+                            <button class="btn btn-primary" type="submit" id="checkbtn" data-count="1" data-first="true">Check</button>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-danger" type="submit" id="resetbtn">Reset</button>
+                        </div>
+                    </div>
                 </form>
+
             </div>
         </div>
       </div>
@@ -252,10 +243,11 @@
       </div>
 
       <!-- Bootstrap core JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
     <!-- MyScripts-->
     <script src="js/myscripts.js"></script>
 
